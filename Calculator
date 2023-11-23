@@ -1,0 +1,62 @@
+import operator
+
+class Calculator:
+    def __init__(self):
+        self.total = 0
+        self.current_operator = None
+
+    def add(self, num):
+        if self.current_operator == None:
+            self.total += num
+        else:
+            self.total = operator.add(self.total, num)
+
+        self.current_operator = None
+
+    def subtract(self, num):
+        if self.current_operator == None:
+            self.total -= num
+        else:
+            self.total = operator.sub(self.total, num)
+
+        self.current_operator = None
+
+    def multiply(self, num):
+        if self.current_operator == None:
+            self.total *= num
+        else:
+            self.total = operator.mul(self.total, num)
+
+        self.current_operator = None
+
+    def divide(self, num):
+        if self.current_operator == None:
+            self.total /= num
+        else:
+            self.total = operator.truediv(self.total, num)
+
+        self.current_operator = None
+
+    def get_total(self):
+        return self.total
+
+    def set_operator(self, operator):
+        self.current_operator = operator
+
+calculator = Calculator()
+
+calculator.add(5)
+calculator.add(3)
+print(calculator.get_total())  # Output: 8
+
+calculator.set_operator(operator.sub)
+calculator.add(2)
+print(calculator.get_total())  # Output: 6
+
+calculator.set_operator(operator.mul)
+calculator.add(4)
+print(calculator.get_total())  # Output: 24
+
+calculator.set_operator(operator.truediv)
+calculator.add(3)
+print(calculator.get_total())  # Output: 8
